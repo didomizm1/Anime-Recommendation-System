@@ -1,0 +1,6 @@
+# Ignore Mac Finder files
+.DS_Store
+
+# Ignore IDE and editor files
+.idea/
+.ipynb_checkpoints/
