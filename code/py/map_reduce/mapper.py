@@ -9,4 +9,7 @@ def initial_centroids:
 
 # Generate clusters based on chosen centroids
 def generate_clusters:
-    
+
+
+# Call functions in order to print data for reducer
+
