@@ -71,36 +71,36 @@ def generate_clusters(centroids_list):
 
     # Get average user ratings as a processed list
     average_ratings = import_datapoints_file(filepath, 1)
-    
-    for user_rating in average_ratings:
-        # Keeps track of the centroid number for calculating the distances
-        centroid_number = 0
-        for centroid in centroids_list:
-            try:
-                for x in range(42):
-                    coordinate[x] = float(coordinate[x])
-            except ValueError:
-                continue
-    
-            # Euclidian distance, calculates the distance between the point and each centroid
-            distance = 0
-            for x in range(42):
-                if np.isnan(coordinate[x]):  # Checking if coordinate is a NaN value
-                    distance = distance
-                else:
-                    distance += (pow(coordinate[x]-centroid[centroid_number], 2))
-    
-            current_distance = sqrt(distance)
 
-            # Find the centroid closer to the point
-            if current_distance <= min_distance:
-                min_distance = current_distance
-                index = centroids_list.index(centroid)
-            centroid_number += 1
+    for user_rating in average_ratings:
+
+        cluster_number = -1  # Keeps track of the cluster number for a user rating to be added to
+        least_distance = -1  # Smallest distance so far found between a centroid and user rating datapoint
+
+        # Euclidian distance, calculates the distance between the point and each centroid
+        for centroid in centroids_list:
+
+            distance_sum = 0  # Sum portion of Euclidian distance which goes inside the square root
+
+            # Add to the sum only for dimensions (genres) that the centroid and datapoint have in common
+            # i.e., ignore NaN values for both the centroid and datapoint when finding a distance
+            for x in range(42):
+                try:
+                    distance_sum += pow(centroid[x] - user_rating[x+1], 2)
+                except (Exception,):
+                    continue
+
+            # Get final distance by taking the square root of the sum
+            current_distance = sqrt(distance_sum)
+
+            # Set closest centroid on first iteration or if lesser distance was found
+            if current_distance < least_distance or least_distance == -1:
+                least_distance = current_distance
+                cluster_number += 1  # Clusters will be numbered starting with 0
     
         # Print cluster number followed by user rating as a string from original ratings file
         rating_index = average_ratings.index(user_rating)
-        print(str(cluster_number) + "," + original_average_ratings[rating_index])
+        print(str(cluster_number) + "," + original_average_ratings[rating_index], end="")
 
 
 # Call functions in order to print data for reducer
