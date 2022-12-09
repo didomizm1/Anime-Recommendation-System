@@ -56,7 +56,7 @@ def import_datapoints_file(filepath, mode):
 # Generate clusters based on centroids
 def generate_clusters(centroids_list):
     # Path to average user ratings
-    filepath = '../../../data/average_ratings/average_ratings_test.csv'
+    filepath = '../../../data/average_ratings/average_ratings.csv'
 
     # Save each line of average ratings as a string for later use when sending to reducer
     original_average_ratings = []
