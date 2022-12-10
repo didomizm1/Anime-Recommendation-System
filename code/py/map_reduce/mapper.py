@@ -56,11 +56,11 @@ def import_datapoints_file(filepath, mode):
 # Generate clusters based on centroids
 def generate_clusters(centroids_list):
     # Path to average user ratings
-    filepath = '../../../data/average_ratings/average_ratings.csv'
+    ratings_filepath = '../../../data/average_ratings/average_ratings.csv'
 
     # Save each line of average ratings as a string for later use when sending to reducer
     original_average_ratings = []
-    with open(filepath, "r") as file:
+    with open(ratings_filepath, "r") as file:
         # Skip first line
         next(file)
 
@@ -70,37 +70,48 @@ def generate_clusters(centroids_list):
     file.close()
 
     # Get average user ratings as a processed list
-    average_ratings = import_datapoints_file(filepath, 1)
+    average_ratings = import_datapoints_file(ratings_filepath, 1)
 
-    for user_rating in average_ratings:
+    # Iterate through average user ratings
+    initial_stdout = sys.stdout
+    clusters_filepath = '../../../data/clusters/clusters.csv'
+    with open(clusters_filepath, "w") as clusters_file:
+        for user_rating in average_ratings:
 
-        cluster_number = -1  # Keeps track of the cluster number for a user rating to be added to
-        least_distance = -1  # Smallest distance so far found between a centroid and user rating datapoint
+            cluster_number = -1  # Keeps track of the cluster number for a user rating to be added to
+            least_distance = -1  # Smallest distance so far found between a centroid and user rating datapoint
 
-        # Euclidian distance, calculates the distance between the point and each centroid
-        for centroid in centroids_list:
+            # Euclidian distance, calculates the distance between the point and each centroid
+            for centroid in centroids_list:
 
-            distance_sum = 0  # Sum portion of Euclidian distance which goes inside the square root
+                distance_sum = 0  # Sum portion of Euclidian distance which goes inside the square root
 
-            # Add to the sum only for dimensions (genres) that the centroid and datapoint have in common
-            # i.e., ignore NaN values for both the centroid and datapoint when finding a distance
-            for x in range(42):
-                try:
-                    distance_sum += pow(centroid[x] - user_rating[x+1], 2)
-                except (Exception,):
-                    continue
+                # Add to the sum only for dimensions (genres) that the centroid and datapoint have in common
+                # i.e., ignore NaN values for both the centroid and datapoint when finding a distance
+                for x in range(42):
+                    try:
+                        distance_sum += pow(centroid[x] - user_rating[x+1], 2)
+                    except (Exception,):
+                        continue
 
-            # Get final distance by taking the square root of the sum
-            current_distance = sqrt(distance_sum)
+                # Get final distance by taking the square root of the sum
+                current_distance = sqrt(distance_sum)
 
-            # Set closest centroid on first iteration or if lesser distance was found
-            if current_distance < least_distance or least_distance == -1:
-                least_distance = current_distance
-                cluster_number += 1  # Clusters will be numbered starting with 0
-    
-        # Print cluster number followed by user rating as a string from original ratings file
-        rating_index = average_ratings.index(user_rating)
-        print(str(cluster_number) + "," + original_average_ratings[rating_index], end="")
+                # Set closest centroid on first iteration or if lesser distance was found
+                if current_distance < least_distance or least_distance == -1:
+                    least_distance = current_distance
+                    cluster_number += 1  # Clusters will be numbered starting with 0
+
+            # Print cluster number followed by user rating as a string from original ratings file
+            rating_index = average_ratings.index(user_rating)
+            print(str(cluster_number) + "," + original_average_ratings[rating_index], end="")
+
+            # Print same information to file
+            sys.stdout = clusters_file
+            print(str(cluster_number) + "," + original_average_ratings[rating_index], end="")
+            sys.stdout = initial_stdout
+
+    clusters_file.close()
 
 
 # Call functions in order to print data for reducer
