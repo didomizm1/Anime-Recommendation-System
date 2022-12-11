@@ -54,7 +54,7 @@ def new_centroids():
 
     # Name of csv file to write centroids to for further iterations (output is also printed to HDFS)
     initial_stdout = sys.stdout
-    filepath = "../../../data/centroids/centroids.csv"
+    filepath = "C:/Users/alpgr/Desktop/Anime-Recommendation-System/data/centroids/centroids.csv"
     with open(filepath, "w") as new_centroids_output:
         # Print labels
         print(labels)

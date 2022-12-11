@@ -56,7 +56,7 @@ def import_datapoints_file(filepath, mode):
 # Generate clusters based on centroids
 def generate_clusters(centroids_list):
     # Path to average user ratings
-    ratings_filepath = '../../../data/average_ratings/average_ratings.csv'
+    ratings_filepath = 'C:/Users/alpgr/Desktop/Anime-Recommendation-System/data/average_ratings/average_ratings.csv'
 
     # Save each line of average ratings as a string for later use when sending to reducer
     original_average_ratings = []
@@ -76,7 +76,7 @@ def generate_clusters(centroids_list):
 
     # Iterate through average user ratings
     initial_stdout = sys.stdout
-    clusters_filepath = '../../../data/clusters/clusters.csv'
+    clusters_filepath = 'C:/Users/alpgr/Desktop/Anime-Recommendation-System/data/clusters/clusters.csv'
     with open(clusters_filepath, "w") as clusters_file:
         # Print labels
         print(labels)
@@ -126,5 +126,5 @@ def generate_clusters(centroids_list):
 
 # Call functions in order to print data for reducer
 if __name__ == '__main__':
-    centroids = import_datapoints_file('../../../data/centroids/centroids.csv', 0)
+    centroids = import_datapoints_file('C:/Users/alpgr/Desktop/Anime-Recommendation-System/data/centroids/centroids.csv', 0)
     generate_clusters(centroids)

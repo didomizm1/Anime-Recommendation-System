@@ -1,0 +1,29 @@
+run cmd as admin
+
+hdfs namenode -format
+
+cd ..
+cd ..
+cd hadoop-3.3.4
+cd sbin
+start-dfs
+start-yarn
+
+hadoop fs -mkdir -p hdfs://localhost:9000/user/input
+
+hadoop fs -put C:\hadoop-3.3.4\wikiHadoop.txt hdfs://localhost:9000/user/input
+hadoop fs -put C:\hadoop-3.3.4\mapper.py hdfs://localhost:9000/user/input
+hadoop fs -put C:\hadoop-3.3.4\reducer.py hdfs://localhost:9000/user/input
+
+hadoop fs -cat hdfs://localhost:9000/user/input/wikiHadoop.txt | C:\hadoop-3.3.4\mapper.py | sort
+hadoop fs -cat hdfs://localhost:9000/user/input/wikiHadoop.txt | C:\hadoop-3.3.4\mapper.py | sort | C:\hadoop-3.3.4\reducer.py
+hadoop fs -cat hdfs://localhost:9000/user/input/wikiHadoop.txt | "python C:\hadoop-3.3.4\mapper.py" | sort | "python C:\hadoop-3.3.4\reducer.py"
+
+hadoop fs -rm hdfs://localhost:9000/user/output/_SUCCESS
+hadoop fs -rm hdfs://localhost:9000/user/output/part-00000
+hadoop fs -rmdir hdfs://localhost:9000/user/output
+
+hadoop jar C:\hadoop-3.3.4\share\hadoop\tools\lib\hadoop-streaming-3.3.4.jar -mapper "python C:\hadoop-3.3.4\mapper.py" -reducer "python C:\hadoop-3.3.4\reducer.py" -input hdfs://localhost:9000/user/input/wikiHadoop.txt -output hdfs://localhost:9000/user/output
+
+stop-dfs
+stop-yarn
