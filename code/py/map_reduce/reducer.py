@@ -92,12 +92,16 @@ def new_centroids():
                 else:
                     string_to_print += str(new_centroid_coordinates[j]) + ","
 
+            # Do not print new line on last iteration
+            if cluster_num != num_of_clusters - 1:
+                string_to_print += "\n"
+
             # Print new centroids (output of reducer to HDFS)
-            print(string_to_print)
+            print(string_to_print, end="")
 
             # Writing to csv file
             sys.stdout = new_centroids_output
-            print(string_to_print)
+            print(string_to_print, end="")
             sys.stdout = initial_stdout
 
     new_centroids_output.close()
