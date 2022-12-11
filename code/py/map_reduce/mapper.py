@@ -60,9 +60,11 @@ def generate_clusters(centroids_list):
 
     # Save each line of average ratings as a string for later use when sending to reducer
     original_average_ratings = []
+    # Labels from first line to be printed later
+    labels = ""
     with open(ratings_filepath, "r") as file:
-        # Skip first line
-        next(file)
+        # Gets labels from first line
+        labels = "cluster_number," + next(file).strip('\n')
 
         # Add line to list
         for line in file:
@@ -76,6 +78,14 @@ def generate_clusters(centroids_list):
     initial_stdout = sys.stdout
     clusters_filepath = '../../../data/clusters/clusters.csv'
     with open(clusters_filepath, "w") as clusters_file:
+        # Print labels
+        print(labels)
+
+        # Print labels to csv file
+        sys.stdout = clusters_file
+        print(labels)
+        sys.stdout = initial_stdout
+
         for user_rating in average_ratings:
 
             cluster_number = -1  # Keeps track of the cluster number for a user rating to be added to
