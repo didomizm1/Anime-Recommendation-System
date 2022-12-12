@@ -1,0 +1,10 @@
+1 = Cowboy Bebop
+21 = One Piece
+57 = Beck:Mongolian Chop Squad
+120 = Fruits Basket
+202 = Wolf's Rain
+249 = InuYasha
+322 = Paradise Kiss
+32949 = Scum's Wish
+34451 = Blood Blockade Battlefront & Beyond
+12531 = Kids on the Slope
