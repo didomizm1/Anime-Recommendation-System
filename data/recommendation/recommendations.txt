@@ -1,0 +1,67 @@
+Input user ID: 6532
+Input user cluster number: 2
+Chosen similar user ID: 4155
+
+Recommendations:
+Code Geass:Akito the Exiled - The Wyvern Arrives
+Haganai:I don't have many friends NEXT
+Clannad
+Love, Chunibyo & Other Delusions!
+Campione!
+5 Centimeters Per Second
+Haganai:I don't have many friends
+Mayo Chiki!
+Beck:Mongolian Chop Squad
+Bakemonogatari
+Baka & Test – Summon the Beasts 2
+Angel Beats!
+Amagami SS
+Air Gear
+Accel World
+Code Geass:Lelouch of the Rebellion
+ERASED
+Majikoi:Oh! Samurai Girls
+Daily Lives of High School Boys
+Durarara!!
+Gurren Lagann
+Dusk Maiden of Amnesia
+Sword Art Online
+Summer Wars
+Gargantia on the Verdurous Planet
+Shuffle!
+Attack on Titan
+Samurai Champloo
+Cromartie High School
+Robotics;Notes
+Persona 4 the Animation
+Oreimo 2
+OreImo
+Spice and Wolf
+The Ambition of Oda Nobuna
+Nyan Koi!
+Nisemonogatari
+Mobile Suit Gundam 00
+Toradora!
+Death Note
+White Album 2
+Blast of Tempest
+Evangelion:1.0 You Are (Not) Alone
+Evangelion:2.0 You Can (Not) Advance
+Fate/Zero
+Full Metal Panic!
+Fullmetal Alchemist:Brotherhood
+Nyaruko:Crawling With Love!
+Nyaruko:Crawling With Love! Second Season
+The Devil is a Part-Timer!
+Hellsing Ultimate
+The "Hentai" Prince and the Stony Cat.
+Infinite Stratos
+The World God Only Knows
+the Garden of sinners Chapter 1:Overlooking View
+the Garden of sinners Chapter 5:Paradox Paradigm
+Kokoro Connect
+Is This a Zombie?
+Kuroko's Basketball
+Puella Magi Madoka Magica
+Yosuga no Sora
+Baccano!
